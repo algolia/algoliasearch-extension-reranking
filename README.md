@@ -94,9 +94,10 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 
 #### Getting started reranking extension with Azure
 
+- Click `Create resource` button
+
 <img src="basics.jpg" alt="basics" align="right" width="400"/>
 
-- Click `Create resource` button
 - In the provided list of the resources select "Web app"
   - Select a resource group or create a new one if needed
   - Input the app name

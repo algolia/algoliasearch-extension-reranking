@@ -144,6 +144,13 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 - You are all set. Go to `Overview` section. You can find the URL of your application which can be used as the endpoint in the index settings.
 
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
 
 #### Getting started reranking extension with GCP
 

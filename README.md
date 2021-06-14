@@ -106,6 +106,9 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Choose a service plan and click Next
 
 <br/>
+<br/>
+<br/>
+<br/>
 
 
 
@@ -120,19 +123,8 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 
 <br/>
 <br/>
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br/>
+<br/>
 
 - Once the validation passed, click `Create` button and wait until the deployment finished.
 - Open the created resource by clicking `Go to resource`

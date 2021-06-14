@@ -21,61 +21,61 @@ Allowing our users to use their own reranking strategy as a post-processing step
 
 ## Setup
 
-### Setup of the reranking extension is a two-step process. 
+Setup of the reranking extension is a two-step process. 
 
 1. Create a web-service. 
 
-   The reranking is performed by a web-service which is able to respond to requests on a specific endpoint.
-   Those requests include minimal information about the records and their ranking criteria.
+The reranking is performed by a web-service which is able to respond to requests on a specific endpoint.
+Those requests include minimal information about the records and their ranking criteria.
 
-   **Request body example:**
+**Request body example:**
 
-   ```ts
-   {
-   "hits": [
+```ts
+{
+"hits": [
+ {
+   "objectID": "object-1",
+   "_rankingOrderedValues": [
      {
-       "objectID": "object-1",
-       "_rankingOrderedValues": [
-         {
-           "criterion": "typo",
-           "order": "asc",
-           "value": 1
-         },
-         // ...
-         {
-           "criterion": "custom",
-           "field": "rating",
-           "order": "asc",
-           "value": "3"
-         }
-       ]
+       "criterion": "typo",
+       "order": "asc",
+       "value": 1
      },
      // ...
+     {
+       "criterion": "custom",
+       "field": "rating",
+       "order": "asc",
+       "value": "3"
+     }
    ]
-   }
-   ```
+ },
+ // ...
+]
+}
+```
 
-   **Expected response**
+**Expected response**
 
-   The response should include the same hits, in their new order.
-   Each hit should only include the objectID.
+The response should include the same hits, in their new order.
+Each hit should only include the objectID.
 
-   ```ts
-   {
-     "hits": [
-       { "objectID": "object-2" },
-       { "objectID": "object-1" },
-       // ...
-     ]
-   }
-   ```
+```ts
+{
+ "hits": [
+   { "objectID": "object-2" },
+   { "objectID": "object-1" },
+   // ...
+ ]
+}
+```
 
-     For performance & cost reasons, reranking servers should be hosted as close as possible to your application. 
-     We provide the getting started guides for three environments: 
+For performance & cost reasons, reranking servers should be hosted as close as possible to your application. 
+We provide the getting started guides for three environments: 
 
-     - [Microsoft Azure](/extensibility/reranking/getting-started-azure.html)
-     - [Google Cloud Platform](/extensibility/reranking/getting-started-gcp.html)
-     - [Amazon Web Services](/extensibility/reranking/getting-started-aws.html)
+- [Microsoft Azure](/extensibility/reranking/getting-started-azure.html)
+- [Google Cloud Platform](/extensibility/reranking/getting-started-gcp.html)
+- [Amazon Web Services](/extensibility/reranking/getting-started-aws.html)
 
 
 

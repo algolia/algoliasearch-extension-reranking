@@ -94,7 +94,7 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 
 #### Getting started reranking extension with Azure
 
-<img src="basics.jpg" alt="basics" align="right" width="300"/>
+<img src="basics.jpg" alt="basics" align="right" width="400"/>
 
 - Click `Create resource` button
 - In the provided list of the resources select "Web app"
@@ -115,33 +115,36 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 <br />
 
 
-<img src="docker.jpg" alt="docker" align="right" width="300"/>
+<img src="docker.jpg" alt="docker" align="right" width="400"/>
+
 - In the Docker setup
   - Select `Single Container` option
   - Select `Docker Hub` as the image source
   - Select `Public` visibility
   - Set `Image and tag` field with `algolia/test-reranking:1.0.2`
   - Click `Review + create` button. The validation of the app will take some time.
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 - Once the validation passed, click `Create` button and wait until the deployment finished.
 - Open the created resource by clicking `Go to resource`
 
 <img src="configuration.jpg" alt="configuration" align="right" width="300"/>
+
 - Select `Settings` -> `Configuration`
 - Click `New application setting`
 - Set name to `PORT` and value to `80`, click `OK` and then `Save` button. 
 - You are all set. Go to `Overview` section. You can find the URL of your application which can be used as the endpoint in the index settings.
+
 <br/>
 <br/>
 <br/>

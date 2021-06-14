@@ -94,11 +94,27 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 
 #### Getting started reranking extension with Azure
 
-- Create a new resource "Web app" with a new resource group if needed. 
-- Select Docker container
-- Select Linux Operating System
+- Click create resource button
+- In the provided list of the resources select "Web app"
+  - Select a resource group or create a new one if needed
+  - Input the app name
+  - Select Docker container on Linux operating system
+  - Choose the region
+  - Choose a service plan and click Next
 
-- In the Docker Setup screen select Docker Hub with public acces and set `algolia/text-reranking:1.0.2` in the tag field
+- In the Docker setup
+  - Select `Single Container` option
+  - Select `Docket Hub` as the image source
+  - Select `Public` visibility
+  - Set `Image and tag` field with `algolia/test-reranking:1.0.2`
+  - Click `Review + create` button. The validation of the app will take some time.
+
+- Once the validation passed, click `Create` button and wait until the deployment finished.
+- Open the created resource by clicking `Go to resource`
+- Select `Settings` -> `Configuration`
+- Click `New application setting`
+- Set name to `PORT` and value to `80`, click `OK` and then `Save` button. 
+- You are all set. Go to `Overview` section. You can find the URL of your application which can be used as the endpoint in the index settings.
 
 
 #### Getting started reranking extension with GCP

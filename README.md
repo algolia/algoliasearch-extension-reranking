@@ -119,13 +119,12 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Click `Review + create` button. The validation of the app will take some time.
 
 <br/>
-
-
+<br/>
 
 - Once the validation passed, click `Create` button and wait until the deployment finished.
 - Open the created resource by clicking `Go to resource`
 
-
+<br/>
 
 <img src="configuration.jpg" alt="configuration" align="right" width="400"/>
 

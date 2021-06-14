@@ -117,7 +117,9 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 <br/>
 <br/>
 <br/>
-
+<br/>
+<br/>
+<br/>
 
 <img src="docker.jpg" alt="docker" align="right" width="400"/>
 
@@ -128,6 +130,7 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Set `Image and tag` field with `algolia/test-reranking:1.0.2`
   - Click `Review + create` button. The validation of the app will take some time.
 
+<br/>
 <br/>
 <br/>
 

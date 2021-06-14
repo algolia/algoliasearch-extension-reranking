@@ -103,7 +103,7 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Input the app name
   - Select Docker container on Linux operating system
   - Choose the region
-  - Choose a service plan and click Next
+  - Choose a service plan and click `Next`
 
 <br/>
 <br/>
@@ -113,7 +113,10 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 <br/>
 <br/>
 <br/>
-
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 <img src="docker.jpg" alt="docker" align="right" width="400"/>

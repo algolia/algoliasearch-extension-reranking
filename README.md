@@ -95,6 +95,7 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 #### Getting started reranking extension with Azure
 
 <img src="basics.jpg" alt="basics" align="right" width="300"/>
+
 - Click `Create resource` button
 - In the provided list of the resources select "Web app"
   - Select a resource group or create a new one if needed
@@ -102,6 +103,7 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Select Docker container on Linux operating system
   - Choose the region
   - Choose a service plan and click Next
+
 <br />
 <br />
 <br />

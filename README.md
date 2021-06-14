@@ -105,14 +105,6 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Choose a service plan and click Next
 
 <br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
 
 <img src="docker.jpg" alt="docker" align="right" width="400"/>
 
@@ -124,12 +116,6 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Click `Review + create` button. The validation of the app will take some time.
 
 <br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
 
 - Once the validation passed, click `Create` button and wait until the deployment finished.
 - Open the created resource by clicking `Go to resource`
@@ -142,10 +128,6 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 - You are all set. Go to `Overview` section. You can find the URL of your application which can be used as the endpoint in the index settings.
 
 <br/>
-<br/>
-<br/>
-<br/>
-
 
 #### Getting started reranking extension with GCP
 

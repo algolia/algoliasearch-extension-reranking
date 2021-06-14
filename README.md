@@ -94,8 +94,9 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 
 #### Getting started reranking extension with Azure
 
-- Click create resource button
+- Click `Create resource` button
 - In the provided list of the resources select "Web app"
+![basics](basics.jpg)
   - Select a resource group or create a new one if needed
   - Input the app name
   - Select Docker container on Linux operating system
@@ -103,14 +104,16 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Choose a service plan and click Next
 
 - In the Docker setup
+![docker](docker.jpg)
   - Select `Single Container` option
-  - Select `Docket Hub` as the image source
+  - Select `Docker Hub` as the image source
   - Select `Public` visibility
   - Set `Image and tag` field with `algolia/test-reranking:1.0.2`
   - Click `Review + create` button. The validation of the app will take some time.
 
 - Once the validation passed, click `Create` button and wait until the deployment finished.
 - Open the created resource by clicking `Go to resource`
+![configuration](configuration.jpg)
 - Select `Settings` -> `Configuration`
 - Click `New application setting`
 - Set name to `PORT` and value to `80`, click `OK` and then `Save` button. 

@@ -96,7 +96,7 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 
 - Click `Create resource` button
 - In the provided list of the resources select "Web app"
-![basics](basics.jpg)
+<img src="basics.jpg" alt="basics" width="200"/>
   - Select a resource group or create a new one if needed
   - Input the app name
   - Select Docker container on Linux operating system
@@ -104,7 +104,7 @@ Set `extensions.reranking` with the following setting <-- link to the API client
   - Choose a service plan and click Next
 
 - In the Docker setup
-![docker](docker.jpg)
+<img src="docker.jpg" alt="docker" width="200"/>
   - Select `Single Container` option
   - Select `Docker Hub` as the image source
   - Select `Public` visibility
@@ -113,7 +113,8 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 
 - Once the validation passed, click `Create` button and wait until the deployment finished.
 - Open the created resource by clicking `Go to resource`
-![configuration](configuration.jpg)
+
+<img src="configuration.jpg" alt="configuration" width="200"/>
 - Select `Settings` -> `Configuration`
 - Click `New application setting`
 - Set name to `PORT` and value to `80`, click `OK` and then `Save` button. 

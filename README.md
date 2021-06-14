@@ -1,29 +1,31 @@
 # Extensibility - Reranking
 
-## Why?
+## What is reranking extension?
 
-Allowing our users to use their own reranking strategy as a post-processing step.
+Reranking extension provides the possibility to re-rank items based on more than just a custom ranking, but based on a specific logic, for example:
 
-### Use-cases:
-
-- Custom merchandising
+- Custom merchandising (e.g. based on number of impressions)
 - Custom personalization strategies
 - Custom machine learning model
 
+Reranking extension is a post-processing step for a search request giving you the full control of the final search results ranking.
+
 ## How it works?
+
+The sequence diagram shows how the reranking extensions works.
 
 ![Diagram](seqdiag.png)
 
-- User triggers a new search
-- The engine returns the results end dispatch a chunk of results to the reranking service
-- The reranking service returns the reordered results to the engine
-- The engine returns the reordered results to the user
+- A User triggers a new search
+- The engine performs a search end dispatch a chunk of results to the reranking extension endpoint
+- The reranking service performs reranking and returns the reordered result to the engine
+- The engine returns the reordered results to the User
 
 ## Setup
 
-Setup of the reranking extension is a two-step process. 
+Setup of the reranking extension consists of two steps. 
 
-1. Create a web-service. 
+1. Create a reranking web-service. 
 
 The reranking is performed by a web-service which is able to respond to requests on a specific endpoint.
 Those requests include minimal information about the records and their ranking criteria.
@@ -55,10 +57,10 @@ Those requests include minimal information about the records and their ranking c
 }
 ```
 
-**Expected response**
-
 The response should include the same hits, in their new order.
 Each hit should only include the objectID.
+
+**Expected response**
 
 ```ts
 {
@@ -71,12 +73,6 @@ Each hit should only include the objectID.
 ```
 
 For performance & cost reasons, reranking servers should be hosted as close as possible to your application. 
-We provide the getting started guides for three environments: 
-
-- [Microsoft Azure](/extensibility/reranking/getting-started-azure.html)
-- [Google Cloud Platform](/extensibility/reranking/getting-started-gcp.html)
-- [Amazon Web Services](/extensibility/reranking/getting-started-aws.html)
-
 
 
 2. Set the reranking endpoint in the settings 

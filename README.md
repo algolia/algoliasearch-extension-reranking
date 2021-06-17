@@ -25,7 +25,7 @@ The sequence diagram shows how the reranking extensions works.
 
 The setup of the reranking extension consists of two steps: 
 
-1. Create a reranking web-service. 
+### 1. Create a reranking web-service. 
 
 The reranking is performed by a web-service which is able to respond to requests on a specific endpoint.
 Those requests include minimal information about the records and their ranking criteria.
@@ -74,7 +74,7 @@ Each hit should only include the objectID.
 
 For performance and cost reasons, reranking servers should be hosted as close as possible to your application. 
 
-2. Set the reranking endpoint in the settings 
+### 2. Set the reranking endpoint in the settings 
 
 Set `extensions.reranking` setting in your index: <-- link to the API clients documentation? /-->
 
@@ -91,11 +91,20 @@ Set `extensions.reranking` setting in your index: <-- link to the API clients do
 ```
 
 
-### Getting started reranking extension with Azure
+## Getting started reranking extension with Azure
+
+### Before we start
+
+This guide requires to have a Docker image to deploy.
+The source code for the example Docker image is available [here](/Docker) and deployed publicly on [Docker Hub](https://hub.docker.com/r/algolia/test-reranking).
+This image starts a webserver on `$PORT` (env var) that expects requests as described above, and returns objectIDs in the reverse order they were sent.
+
+<br/>
+<br/>
 
 - Click `Create resource` button
 
-<img src="basics.jpg" alt="basics" align="right" width="400"/>
+<img src="basics.jpg" alt="basics" align="right" width="500"/>
 
 - In the provided list of resources select "Web app"
   - Select a resource group or create a new one if needed
@@ -119,8 +128,12 @@ Set `extensions.reranking` setting in your index: <-- link to the API clients do
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-<img src="docker.jpg" alt="docker" align="right" width="400"/>
+<img src="docker.jpg" alt="docker" align="right" width="500"/>
 
 - In the Docker setup
   - Select `Single Container` option
@@ -129,8 +142,6 @@ Set `extensions.reranking` setting in your index: <-- link to the API clients do
   - Set `Image and tag` field with `algolia/test-reranking:1.0.2`
   - Click `Review + create` button. The validation of the app will take some time.
  
- The source code of the example Docker image is available [here](/Docker)
-
 <br/>
 <br/>
 <br/>
@@ -140,7 +151,9 @@ Set `extensions.reranking` setting in your index: <-- link to the API clients do
 
 <br/>
 
-<img src="configuration.jpg" alt="configuration" align="right" width="400"/>
+
+
+<img src="configuration.jpg" alt="configuration" align="right" width="500"/>
 
 - Select `Settings` -> `Configuration`
 - Click `New application setting`

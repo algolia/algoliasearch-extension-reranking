@@ -2,13 +2,13 @@
 
 ## What is reranking extension?
 
-Reranking extension provides the possibility to re-rank items based on more than just a custom ranking, but based on a specific logic, for example:
+The reranking extension provides the possibility to re-rank items based on more than just a custom ranking, but based on a specific logic, for example:
 
 - Custom merchandising (e.g. based on number of impressions)
 - Custom personalization strategies
 - Custom machine learning model
 
-Reranking extension is a post-processing step for a search request giving you the full control of the final search results ranking.
+The reranking extension is a post-processing step for a search request giving you the full control of the final search results ranking.
 
 ## How it works?
 
@@ -17,13 +17,13 @@ The sequence diagram shows how the reranking extensions works.
 ![Diagram](seqdiag.png)
 
 - A User triggers a new search
-- The engine performs a search end dispatch a chunk of results to the reranking extension endpoint
+- The engine performs a search and dispatches a specified chunk of results to the reranking extension endpoint
 - The reranking service performs reranking and returns the reordered result to the engine
 - The engine returns the reordered results to the User
 
 ## Setup
 
-Setup of the reranking extension consists of two steps. 
+The setup of the reranking extension consists of two steps: 
 
 1. Create a reranking web-service. 
 
@@ -72,12 +72,11 @@ Each hit should only include the objectID.
 }
 ```
 
-For performance & cost reasons, reranking servers should be hosted as close as possible to your application. 
-
+For performance and cost reasons, reranking servers should be hosted as close as possible to your application. 
 
 2. Set the reranking endpoint in the settings 
 
-Set `extensions.reranking` with the following setting <-- link to the API clients documentation? /-->
+Set `extensions.reranking` setting in your index: <-- link to the API clients documentation? /-->
 
 ```ts
 {
@@ -98,10 +97,10 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 
 <img src="basics.jpg" alt="basics" align="right" width="400"/>
 
-- In the provided list of the resources select "Web app"
+- In the provided list of resources select "Web app"
   - Select a resource group or create a new one if needed
   - Input the app name
-  - Select Docker container on Linux operating system
+  - Select `Docker container` on `Linux` operating system
   - Choose the region
   - Choose a service plan and click `Next`
 
@@ -135,7 +134,7 @@ Set `extensions.reranking` with the following setting <-- link to the API client
 <br/>
 
 - Once the validation passed, click `Create` button and wait until the deployment finished.
-- Open the created resource by clicking `Go to resource`
+- Open the created resource by clicking `Go to resource` button.
 
 <br/>
 

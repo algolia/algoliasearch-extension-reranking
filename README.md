@@ -128,6 +128,8 @@ Set `extensions.reranking` setting in your index: <-- link to the API clients do
   - Select `Public` visibility
   - Set `Image and tag` field with `algolia/test-reranking:1.0.2`
   - Click `Review + create` button. The validation of the app will take some time.
+ 
+ The source code of the example Docker image is available [here](/Docker)
 
 <br/>
 <br/>

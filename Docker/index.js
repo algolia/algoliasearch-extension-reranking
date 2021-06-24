@@ -36,21 +36,39 @@ function computeDuration(start) {
 exitOnSignal('SIGINT');
 exitOnSignal('SIGTERM');
 
+function rerank(hits) {
+
+  // Replace this implementation with your reranking logic
+  
+  function sortBySalesRank(a, b) {
+    if (a.salesRank < b.salesRank) {
+      return -1;
+    }
+    if (a.salesRank > b.salesRank) {
+      return 1;
+    }  
+    return 0;
+  }
+
+  hits.sort(sortBySalesRank);
+
+  return hits
+} 
+
 const requestListener = async function (req, res) {
   try {
     const body = await getBody(req);
+    console.log(body);
     const before = process.hrtime();
     const data = JSON.parse(body);
     const len = data.hits.length;
 
-    // Definitely not idiomatic, but trying to write an efficient version
-    const newHits = new Array(len);
-    for (let i = 0; i < len; ++i) {
-      const hit = data.hits[i];
-      delete hit._rankingOrderedValues;
-      newHits[len - i - 1] = hit;
-    }
-    const newHitsStr = JSON.stringify(newHits);
+    hits.forEach(function(hit) {
+      delete hit._rankingOrderedValues
+    })
+    let rerankedHits = rerank(hits);
+
+    const newHitsStr = JSON.stringify(rerankedHits);
 
     const duration = computeDuration(before);
     const result = `{"hits":${newHitsStr},"duration":${duration}}`;

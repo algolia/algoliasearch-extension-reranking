@@ -76,7 +76,7 @@ For performance and cost reasons, your web services should be hosted as close as
 
 We provide an example of the reranking extension service within a Docker container which is available on the [Docker Hub](https://hub.docker.com/r/algolia/test-reranking).
 
-It is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it accordingly with the reranking logic. 
+It is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it according with the reranking logic. 
 The source code of this application can be found in the [index.js](/Docker/index.js) file.
 The essential part of this application is the `rerank` function which takes the list of hits as a parameter and returns the reordered list of hits as a result.
 In our example it sorts the hits by `salesRank` criteria in ascending order.

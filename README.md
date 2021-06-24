@@ -1,33 +1,33 @@
-# Extensibility - Reranking
+# Reranking extensibility
 
-## What is reranking extension?
+## What is the reranking extension?
 
-The reranking extension provides the possibility to re-rank items based on more than just a custom ranking, but based on a specific logic, for example:
+The reranking extension provides the possibility to rerank items based on more than just custom ranking. You can rerank items on a specific logic, for example:
 
 - Custom merchandising (e.g. based on number of impressions)
 - Custom personalization strategies
-- Custom machine learning model
+- Custom machine learning models
 
-The reranking extension is a post-processing step for a search request giving you the full control of the final search results ranking.
+The reranking extension is a post-processing step for a search request that gives you full control of the final search results ranking.
 
-## How it works?
+## How does it work?
 
-The sequence diagram shows how the reranking extensions works.
+The sequence diagram below shows how the reranking extensions works.
 
 ![Diagram](seqdiag.png)
 
-- A User triggers a new search
+- A user triggers a new search
 - The engine performs a search and dispatches a specified chunk of results to the reranking extension endpoint
 - The reranking service performs reranking and returns the reordered result to the engine
-- The engine returns the reordered results to the User
+- The engine returns the reordered results to the user
 
 ## Setup
 
 The setup of the reranking extension consists of two steps: 
 
-### 1. Create a reranking web-service. 
+### 1. Create a reranking web service
 
-The reranking is performed by a web-service which is able to respond to requests on a specific endpoint.
+The reranking is performed by a web-service that should be able to respond to requests on a specific endpoint.
 Those requests include minimal information about the records and their ranking criteria.
 
 **Request body example:**
@@ -58,7 +58,7 @@ Those requests include minimal information about the records and their ranking c
 ```
 
 The response should include the same hits, in their new order.
-Each hit should only include the objectID.
+Each hit should only include the `objectID`.
 
 **Expected response**
 
@@ -72,7 +72,7 @@ Each hit should only include the objectID.
 }
 ```
 
-For performance and cost reasons, reranking servers should be hosted as close as possible to your application. 
+For performance and cost reasons, your web services should be hosted as close as possible to your Algolia application. 
 
 ### 2. Set the reranking endpoint in the settings 
 
@@ -93,11 +93,9 @@ Set `extensions.reranking` setting in your index: <-- link to the API clients do
 
 ## Getting started reranking extension with Azure
 
-### Before we start
-
-This guide requires to have a Docker image to deploy.
-The source code for the example Docker image is available [here](/Docker) and deployed publicly on [Docker Hub](https://hub.docker.com/r/algolia/test-reranking).
-This image starts a webserver on `$PORT` (env var) that expects requests as described above, and returns objectIDs in the reverse order they were sent.
+This guide requires to have a Docker image ready to deploy.
+The [source code for the example Docker image](/Docker) is available and deployed publicly on [Docker Hub](https://hub.docker.com/r/algolia/test-reranking).
+This image starts a webserver on `$PORT` (set through environment variables). It expects requests as described above, and returns `objectID`s in the reverse order they were sent.
 
 <br/>
 <br/>
@@ -111,7 +109,7 @@ This image starts a webserver on `$PORT` (env var) that expects requests as desc
   - Input the app name
   - Select `Docker container` on `Linux` operating system
   - Choose the region
-  - Choose a service plan and click `Next`
+  - Choose a service plan and click **Next**
 
 <br/>
 <br/>
@@ -136,18 +134,18 @@ This image starts a webserver on `$PORT` (env var) that expects requests as desc
 <img src="docker.jpg" alt="docker" align="right" width="500"/>
 
 - In the Docker setup
-  - Select `Single Container` option
+  - Select the `Single Container` option
   - Select `Docker Hub` as the image source
   - Select `Public` visibility
   - Set `Image and tag` field with `algolia/test-reranking:1.0.2`
-  - Click `Review + create` button. The validation of the app will take some time.
+  - Click the **Review + create** button. The validation of the app will take some time.
  
 <br/>
 <br/>
 <br/>
 
 - Once the validation passed, click `Create` button and wait until the deployment finished.
-- Open the created resource by clicking `Go to resource` button.
+- Open the created resource by clicking the **Go to resource** button.
 
 <br/>
 
@@ -156,9 +154,9 @@ This image starts a webserver on `$PORT` (env var) that expects requests as desc
 <img src="configuration.jpg" alt="configuration" align="right" width="500"/>
 
 - Select `Settings` -> `Configuration`
-- Click `New application setting`
-- Set name to `PORT` and value to `80`, click `OK` and then `Save` button. 
-- You are all set. Go to `Overview` section. You can find the URL of your application which can be used as the endpoint in the index settings.
+- Click **New application setting**
+- Set name to `PORT` and value to `80`, click **OK** and then **Save**
+- You're all set. Go to the `Overview` section. You can find the URL of your application which can be used as the endpoint in the index settings.
 
 <br/>
 <br/>

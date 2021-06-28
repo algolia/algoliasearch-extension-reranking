@@ -1,3 +1,5 @@
+> :warning: Please note that the reranking extension feature is in closed beta phase, in the process of being tested before its official release.  
+
 # Reranking extensibility
 
 ## What is the reranking extension?
@@ -117,6 +119,17 @@ Set `extensions.reranking` setting in your index: <-- link to the API clients do
 }
 ```
 
+```sh
+curl -X PUT -H 'X-Algolia-Application-Id: %YOUR_APPLICATION_ID' -H 'X-Algolia-API-Key: %YOUR_API_KEY'  --data-binary '{
+  "extensions": {
+    "reranking": {
+      "endpoint": "%YOUR_RERANKING_ENDPOINT_URL",
+      "maxNbHits": 100,
+      "enabled": true
+    }
+  }
+ }'  "https://%YOUR_METIS_APPLICATION_URL/1/indexes/%YOUR_INDEX_NAME/settings"
+```
 
 ## Getting started reranking extension with Azure
 

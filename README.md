@@ -128,7 +128,7 @@ Set `extensions.reranking` setting in your index:
 ```
 
 You can access the Metis application using one of the [API clients](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/go/?client=go) we provide.
-You have to initialize the search client using custom configuration in which you should provide the URL of your Metis application as a host. 
+You have to initialize the search client using the custom configuration in which you should provide the URL of your Metis application as a host. 
 The example of creation of the search client with a custom configuration for the Go client:
 
 ```go

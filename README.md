@@ -89,21 +89,26 @@ We provide an example of the reranking extension service within a Docker contain
 It is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it according with the reranking logic. 
 The source code of this application can be found in the [index.js](/Docker/index.js) file.
 The essential part of this application is the `rerank` function which takes the list of hits as a parameter and returns the reordered list of hits as a result.
-In our example it sorts the hits by `salesRank` criteria in ascending order.
+In our example it sorts the hits by ratio of `price` to `salesRank` in decending order. This kind of ranking cannot be achieved through the index settings, so the only way to add such a ranking is to create an extension.
 
 ```ts
 function rerank(hits) {
-  function sortBySalesRank(a, b) {
-    if (a.salesRank < b.salesRank) {
-      return -1;
-    }
-    if (a.salesRank > b.salesRank) {
+  
+  function sortByPriceSalesRankRatio(a, b) {
+
+    let kA = a.price / a.salesRank
+    let kB = b.price / b.salesRank
+
+    if (kA < kB) {
       return 1;
+    }
+    if (kA > kB) {
+      return -1;
     }  
     return 0;
   }
 
-  hits.sort(sortBySalesRank);
+  hits.sort(sortByPriceSalesRankRatio);
 
   return hits
 }
@@ -129,7 +134,8 @@ Set `extensions.reranking` setting in your index:
 
 You can access the Metis application using one of the [API clients](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/go/?client=go) we provide.
 You have to initialize the search client using the custom configuration in which you should provide the URL of your Metis application as a host. 
-The example of creation of the search client with a custom configuration for the Go client:
+
+The example of creation of the search client with a custom configuration using the Go client:
 
 ```go
 configuration := search.Configuration{
@@ -141,7 +147,7 @@ client := search.NewClientWithConfig(configuration)
 index := client.InitIndex("$YOUR_METIS_APPLICATION_INDEX")
 ```
 
-The reranking extension settings can be accessed via `CustomSettings` field.
+The reranking extension settings can be set via `CustomSettings` field.
 ```go
 customSettings := map[string]interface{}{
 	"extensions": map[string]interface{}{

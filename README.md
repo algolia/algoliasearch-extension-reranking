@@ -157,6 +157,7 @@ This image starts a webserver on `$PORT` (set through environment variables). It
   - Input the app name
   - Select `Docker container` on `Linux` operating system
   - Choose the region
+  > :warning: At this stage we only support the extensions hosted in the US-EAST region!
   - Choose a service plan and click **Next**
 
 <br/>

@@ -143,19 +143,19 @@ index := client.InitIndex("$YOUR_METIS_APPLICATION_INDEX")
 
 The reranking extension settings can be accessed via `CustomSettings` field.
 ```go
-	customSettings := map[string]interface{}{
-		"extensions": map[string]interface{}{
-			"reranking": map[string]interface{}{
-				"enabled":   false,
-				"maxNbHits": 100,
-				"endpoint":  "https://alg-test-extensibility-webapp.azurewebsites.net",
-			},
+customSettings := map[string]interface{}{
+	"extensions": map[string]interface{}{
+		"reranking": map[string]interface{}{
+			"enabled":   false,
+			"maxNbHits": 100,
+			"endpoint":  "https://alg-test-extensibility-webapp.azurewebsites.net",
 		},
-	}
+	},
+}
 
-	_, err := index.SetSettings(search.Settings{
-		CustomSettings: customSettings,
-	})
+_, err := index.SetSettings(search.Settings{
+	CustomSettings: customSettings,
+})
 ```
 
 Otherwise, you can directly use the `curl` for this purpose.

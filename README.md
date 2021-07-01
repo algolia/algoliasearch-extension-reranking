@@ -25,11 +25,11 @@ The sequence diagram below shows how the reranking extensions works.
 
 The reranking extension joins the existing ranking pipeline as the last step of the tie-breaking algorithm.
 
-![Simplified ranking pipeline](ranking_pipleline.png)
+<img src="ranking_pipleline_simple.png" alt="Simplified ranking pipeline" align="left" width="200"/>
 
 If you have activated the advanced ranking features such as AI-reranking and Personalization, the resulting ranking pipeline will look as follows:
 
-![Complete ranking pipeline](ranking_pipeline.png)
+<img src="ranking_pipeline.png" alt="Complete ranking pipeline" align="left" width="200"/>
 
 ## Setup
 
@@ -214,4 +214,3 @@ This image starts a webserver on `$PORT` (set through environment variables). It
 <br/>
 <br/>
 <br/>
-

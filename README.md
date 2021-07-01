@@ -23,6 +23,14 @@ The sequence diagram below shows how the reranking extensions works.
 - The reranking service performs reranking and returns the reordered result to the engine
 - The engine returns the reordered results to the user
 
+The reranking extension joins the existing ranking pipeline as the last step of the tie-breaking algorithm.
+
+![Simplified ranking pipeline](ranking_pipleline.png)
+
+If you have activated the advanced ranking features such as AI-reranking and Personalization, the resulting ranking pipeline will look as follows:
+
+![Complete ranking pipeline](ranking_pipeline.png)
+
 ## Setup
 
 The setup of the reranking extension consists of two steps: 
@@ -206,11 +214,3 @@ This image starts a webserver on `$PORT` (set through environment variables). It
 <br/>
 <br/>
 
-
-#### Getting started reranking extension with GCP
-
-TODO:
-
-#### Getting started reranking extension with AWS
-
-TODO:

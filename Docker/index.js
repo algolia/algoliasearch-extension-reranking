@@ -40,17 +40,21 @@ function rerank(hits) {
 
   // Replace this implementation with your reranking logic
   
-  function sortBySalesRank(a, b) {
-    if (a.salesRank < b.salesRank) {
-      return -1;
-    }
-    if (a.salesRank > b.salesRank) {
+  function sortByPriceSalesRankRatio(a, b) {
+
+    let kA = a.price / a.salesRank
+    let kB = b.price / b.salesRank
+
+    if (kA < kB) {
       return 1;
+    }
+    if (kA > kB) {
+      return -1;
     }  
     return 0;
   }
 
-  hits.sort(sortBySalesRank);
+  hits.sort(sortByPriceSalesRankRatio);
 
   return hits
 } 
@@ -63,6 +67,7 @@ const requestListener = async function (req, res) {
     const data = JSON.parse(body);
     const len = data.hits.length;
 
+    const hits = data.hits;
     hits.forEach(function(hit) {
       delete hit._rankingOrderedValues
     })

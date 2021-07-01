@@ -113,7 +113,7 @@ You can replace this function with a one that matches your use case.
 
 ### 2. Set the reranking endpoint in the settings 
 
-Set `extensions.reranking` setting in your index: <-- link to the API clients documentation? /-->
+Set `extensions.reranking` setting in your index:
 
 ```ts
 {
@@ -127,8 +127,39 @@ Set `extensions.reranking` setting in your index: <-- link to the API clients do
 }
 ```
 
+You can access the Metis application using one of the [API clients](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/go/?client=go) we provide.
+You have to initialize the search client using custom configuration in which you should provide the URL of your Metis application as a host. 
+The example of creation of the search client with a custom configuration for the Go client:
+
+```go
+configuration := search.Configuration{
+  AppID:  "%YOUR_METIS_APPLICATION_ID",
+  APIKey: "%YOUR_METIS_APPLICATION_API_KEY",
+  Hosts:  []string{"%YOUR_METIS_APPLICATION_URL"},
+}
+client := search.NewClientWithConfig(configuration)
+index := client.InitIndex("$YOUR_METIS_APPLICATION_INDEX")
+```
+
+The reranking extension settings can be accessed via `CustomSettings` field.
+```go
+customSettings := map[string]interface{}{
+  "extensions": map[string]interface{}{
+    "enabled":   false,
+    "maxNbHits": 100,
+    "endpoint":  "%YOUR_RERANKING_EXTENSION_ENDPOINT",
+  },
+}
+
+res, err := index.SetSettings(search.Settings{
+  CustomSettings: customSettings,
+})
+```
+
+Otherwise, you can directly use the `curl` for this purpose.
+
 ```sh
-curl -X PUT -H 'X-Algolia-Application-Id: %YOUR_APPLICATION_ID' -H 'X-Algolia-API-Key: %YOUR_API_KEY'  --data-binary '{
+curl -X PUT -H 'X-Algolia-Application-Id: %YOUR_METIS_APPLICATION_ID' -H 'X-Algolia-API-Key: %YOUR_METIS_APPLICATION_API_KEY'  --data-binary '{
   "extensions": {
     "reranking": {
       "endpoint": "%YOUR_RERANKING_ENDPOINT_URL",

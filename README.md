@@ -1,4 +1,4 @@
-> :warning: Please note that the reranking extension feature is in closed beta phase, in the process of being tested before its official release.  
+> :warning: Please note that the reranking extension feature is in closed beta phase, in the process of being tested before its official release.
 
 # Reranking extensibility
 
@@ -33,7 +33,7 @@ If you have activated the advanced ranking features such as AI-reranking and Per
 
 ## Setup
 
-The setup of the reranking extension consists of two steps: 
+The setup of the reranking extension consists of two steps:
 
 ### 1. Create a reranking web service
 
@@ -42,28 +42,28 @@ Those requests include minimal information about the records and their ranking c
 
 **Request body example:**
 
-```ts
+```json
 {
-"hits": [
- {
-   "objectID": "object-1",
-   "_rankingOrderedValues": [
-     {
-       "criterion": "typo",
-       "order": "asc",
-       "value": 1
-     },
-     // ...
-     {
-       "criterion": "custom",
-       "field": "rating",
-       "order": "asc",
-       "value": "3"
-     }
-   ]
- },
- // ...
-]
+  "hits": [
+    {
+      "objectID": "object-1",
+      "_rankingOrderedValues": [
+        {
+          "criterion": "typo",
+          "order": "asc",
+          "value": 1
+        },
+        // ...
+        {
+          "criterion": "custom",
+          "field": "rating",
+          "order": "asc",
+          "value": "3"
+        }
+      ]
+    }
+    // ...
+  ]
 }
 ```
 
@@ -72,96 +72,94 @@ Each hit should only include the `objectID`.
 
 **Expected response**
 
-```ts
+```json
 {
- "hits": [
-   { "objectID": "object-2" },
-   { "objectID": "object-1" },
-   // ...
- ]
+  "hits": [
+    { "objectID": "object-2" },
+    { "objectID": "object-1" }
+    // ...
+  ]
 }
 ```
 
-For performance and cost reasons, your web services should be hosted as close as possible to your Algolia application. 
+For performance and cost reasons, your web services should be hosted as close as possible to your Algolia application.
 
 We provide an example of the reranking extension service within a Docker container which is available on the [Docker Hub](https://hub.docker.com/r/algolia/test-reranking).
 
-It is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it according with the reranking logic. 
+It is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it according with the reranking logic.
 The source code of this application can be found in the [index.js](/Docker/index.js) file.
 The essential part of this application is the `rerank` function which takes the list of hits as a parameter and returns the reordered list of hits as a result.
 In our example it sorts the hits by ratio of `price` to `salesRank` in decending order. This kind of ranking cannot be achieved through the index settings, so the only way to add such a ranking is to create an extension.
 
 ```ts
 function rerank(hits) {
-  
   function sortByPriceSalesRankRatio(a, b) {
-
-    let kA = a.price / a.salesRank
-    let kB = b.price / b.salesRank
+    let kA = a.price / a.salesRank;
+    let kB = b.price / b.salesRank;
 
     if (kA < kB) {
       return 1;
     }
     if (kA > kB) {
       return -1;
-    }  
+    }
     return 0;
   }
 
   hits.sort(sortByPriceSalesRankRatio);
 
-  return hits
+  return hits;
 }
 ```
 
 You can replace this function with a one that matches your use case.
 
-### 2. Set the reranking endpoint in the settings 
+### 2. Set the reranking endpoint in the settings
 
 Set `extensions.reranking` setting in your index:
 
-```ts
+```json
 {
   "extensions": {
     "reranking": {
-      "enabled": true,                                 // Activates the feature
-      "endpoint": "https://example.org/my-endpoint",   // URL to target
-      "maxNbHits": 100                                 // Amount of hits to rerank
+      "enabled": true, // Activates the feature
+      "endpoint": "https://example.org/my-endpoint", // URL to target
+      "maxNbHits": 100 // Amount of hits to rerank
     }
   }
 }
 ```
 
 You can access the Metis application using one of the [API clients](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/go/?client=go) we provide.
-You have to initialize the search client using the custom configuration in which you should provide the URL of your Metis application as a host. 
+You have to initialize the search client using the custom configuration in which you should provide the URL of your Metis application as a host.
 
-The example of creation of the search client with a custom configuration using the Go client:
+The example of creation of the search client with a custom configuration using the JS client:
 
-```go
-configuration := search.Configuration{
-  AppID:  "%YOUR_METIS_APPLICATION_ID",
-  APIKey: "%YOUR_METIS_APPLICATION_API_KEY",
-  Hosts:  []string{"%YOUR_METIS_APPLICATION_URL"},
-}
-client := search.NewClientWithConfig(configuration)
-index := client.InitIndex("$YOUR_METIS_APPLICATION_INDEX")
+```ts
+const client = algoliasearch(
+  '$YOUR_METIS_APPLICATION_ID',
+  '$YOUR_METIS_APPLICATION_API_KEY',
+  {
+    hosts: [{ url: '$YOUR_METIS_APPLICATION_URL' }],
+  }
+);
+const index = client.InitIndex('$YOUR_METIS_APPLICATION_INDEX');
 ```
 
 The reranking extension settings can be set via `CustomSettings` field.
-```go
-customSettings := map[string]interface{}{
-	"extensions": map[string]interface{}{
-		"reranking": map[string]interface{}{
-			"enabled":   false,
-			"maxNbHits": 100,
-			"endpoint":  "https://alg-test-extensibility-webapp.azurewebsites.net",
-		},
-	},
-}
 
-_, err := index.SetSettings(search.Settings{
-	CustomSettings: customSettings,
-})
+```ts
+index.setSettings({
+  CustomSettings: {
+    extensions: {
+      reranking: {
+        enabled: false,
+        maxNbHits: 100,
+        endpoint: 'https://alg-test-extensibility-webapp.azurewebsites.net',
+      },
+    },
+  },
+});
 ```
 
 Otherwise, you can directly use the `curl` for this purpose.
@@ -196,7 +194,7 @@ This image starts a webserver on `$PORT` (set through environment variables). It
   - Input the app name
   - Select `Docker container` on `Linux` operating system
   - Choose the region
-  > :warning: At this stage we only support the extensions hosted in the East US region!
+    > :warning: At this stage we only support the extensions hosted in the East US region!
   - Choose a service plan and click **Next**
 
 <br/>
@@ -227,7 +225,7 @@ This image starts a webserver on `$PORT` (set through environment variables). It
   - Select `Public` visibility
   - Set `Image and tag` field with `algolia/test-reranking:1.0.2`
   - Click the **Review + create** button. The validation of the app will take some time.
- 
+
 <br/>
 <br/>
 <br/>
@@ -236,8 +234,6 @@ This image starts a webserver on `$PORT` (set through environment variables). It
 - Open the created resource by clicking the **Go to resource** button.
 
 <br/>
-
-
 
 <img src="configuration.jpg" alt="configuration" align="right" width="500"/>
 

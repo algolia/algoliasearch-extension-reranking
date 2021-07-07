@@ -146,17 +146,15 @@ const client = algoliasearch(
 const index = client.InitIndex('$YOUR_METIS_APPLICATION_INDEX');
 ```
 
-The reranking extension settings can be set via `CustomSettings` field.
+The reranking extension settings can be set via settings:
 
 ```ts
 index.setSettings({
-  CustomSettings: {
-    extensions: {
-      reranking: {
-        enabled: false,
-        maxNbHits: 100,
-        endpoint: 'https://alg-test-extensibility-webapp.azurewebsites.net',
-      },
+  extensions: {
+    reranking: {
+      enabled: false,
+      maxNbHits: 100,
+      endpoint: 'https://alg-test-extensibility-webapp.azurewebsites.net',
     },
   },
 });

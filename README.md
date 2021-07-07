@@ -42,7 +42,7 @@ Those requests include minimal information about the records and their ranking c
 
 **Request body example:**
 
-```json
+```ts
 {
   "hits": [
     {
@@ -72,7 +72,7 @@ Each hit should only include the `objectID`.
 
 **Expected response**
 
-```json
+```ts
 {
   "hits": [
     { "objectID": "object-2" },
@@ -118,7 +118,7 @@ You can replace this function with a one that matches your use case.
 
 Set `extensions.reranking` setting in your index:
 
-```json
+```ts
 {
   "extensions": {
     "reranking": {

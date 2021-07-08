@@ -89,24 +89,43 @@ We provide an example of the reranking extension service within a Docker contain
 It is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it according with the reranking logic.
 The source code of this application can be found in the [index.js](/Docker/index.js) file.
 The essential part of this application is the `rerank` function which takes the list of hits as a parameter and returns the reordered list of hits as a result.
-In our example it sorts the hits by ratio of `price` to `salesRank` in decending order. This kind of ranking cannot be achieved through the index settings, so the only way to add such a ranking is to create an extension.
+In our example it splits the hits into two buckets: cheaper and costlier than $30. The first bucket is sorted by sales rank and the second one is sorted by price. This kind of ranking cannot be achieved through the index settings, so the only way to add such a ranking is to create an extension.
 
 ```ts
 function rerank(hits) {
-  function sortByPriceSalesRankRatio(a, b) {
-    let kA = a.price / a.salesRank;
-    let kB = b.price / b.salesRank;
 
-    if (kA < kB) {
-      return 1;
-    }
-    if (kA > kB) {
+ // Replace this implementation with your reranking logic
+ function rank(a, b) {
+
+    if (a.price < 30 && b.price >= 30) {
       return -1;
     }
-    return 0;
+
+    if (a.price >= 30 && b.price < 30) {
+      return 1;
+    }
+
+    if (a.price < 30 && b.price < 30) {
+      if (a.salesRank < b.salesRank) {
+        return -1;
+      }
+      if (a.salesRank > b.salesRank) {
+        return 1;
+      }
+      return 0;
+    } else {
+      if (a.price < b.price) {
+        return -1;
+      }
+      if (a.price > b.price) {
+        return 1;
+      }
+      return 0;
+    }
+
   }
 
-  hits.sort(sortByPriceSalesRankRatio);
+  hits.sort(rank);
 
   return hits;
 }

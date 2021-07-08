@@ -40,21 +40,37 @@ function rerank(hits) {
 
   // Replace this implementation with your reranking logic
   
-  function sortByPriceSalesRankRatio(a, b) {
+  function rank(a, b) {
 
-    let kA = a.price / a.salesRank
-    let kB = b.price / b.salesRank
+    if (a.price < 30 && b.price >= 30) {
+      return -1;
+    }
 
-    if (kA < kB) {
+    if (a.price >= 30 && b.price < 30) {
       return 1;
     }
-    if (kA > kB) {
-      return -1;
-    }  
-    return 0;
+
+    if (a.price < 30 && b.price < 30) {
+      if (a.salesRank < b.salesRank) {
+        return -1;
+      }
+      if (a.salesRank > b.salesRank) {
+        return 1;
+      }
+      return 0;
+    } else {
+      if (a.price < b.price) {
+        return -1;
+      }
+      if (a.price > b.price) {
+        return 1;
+      }
+      return 0;
+    }
+
   }
 
-  hits.sort(sortByPriceSalesRankRatio);
+  hits.sort(rank);
 
   return hits
 } 

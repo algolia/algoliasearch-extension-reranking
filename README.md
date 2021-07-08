@@ -193,6 +193,30 @@ curl -X PUT -H 'X-Algolia-Application-Id: %YOUR_METIS_APPLICATION_ID' -H 'X-Algo
  }'  "https://%YOUR_METIS_APPLICATION_URL/1/indexes/%YOUR_INDEX_NAME/settings"
 ```
 
+### 3. Test your extension
+
+Test if your extension works as expected. The extension is enabled by default, so the search operation will directly return the reranked list of hits:
+
+```ts
+index.search('').then(({ hits }) => {
+  console.log(hits);
+});
+```
+
+Compare the returned result with a default result returned with deactivated extension:
+
+```ts
+index.search('', {
+  extensions: {
+    reranking: {
+      enabled: false,
+    }
+  }
+}).then(({ hits }) => {
+  console.log(hits);
+});
+```
+
 ## Getting started reranking extension with Azure
 
 This guide requires to have a Docker image ready to deploy.

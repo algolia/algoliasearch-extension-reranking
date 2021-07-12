@@ -31,6 +31,11 @@ If you have activated the advanced ranking features such as AI-reranking and Per
 
 <img src="ranking_pipeline.png" alt="Complete ranking pipeline" width="300"/>
 
+## Requirements
+
+- Algolia Metis application
+- [Microsoft Azure](https://docs.microsoft.com/en-us/azure/app-service/overview) account
+
 ## Setup
 
 The setup of the reranking extension consists of two steps:

@@ -147,8 +147,7 @@ Set `extensions.reranking` setting in your index:
   "extensions": {
     "reranking": {
       "enabled": true, // Activates the feature
-      "endpoint": "https://example.org/my-endpoint", // URL to target
-      "maxNbHits": 100 // Amount of hits to rerank
+      "endpoint": "https://example.org/my-endpoint" // URL to target
     }
   }
 }
@@ -177,8 +176,7 @@ index.setSettings({
   extensions: {
     reranking: {
       enabled: false,
-      maxNbHits: 100,
-      endpoint: 'https://alg-test-extensibility-webapp.azurewebsites.net',
+      endpoint: 'https://alg-test-extensibility-webapp.azurewebsites.net'
     },
   },
 });
@@ -191,7 +189,6 @@ curl -X PUT -H 'X-Algolia-Application-Id: %YOUR_METIS_APPLICATION_ID' -H 'X-Algo
   "extensions": {
     "reranking": {
       "endpoint": "%YOUR_RERANKING_ENDPOINT_URL",
-      "maxNbHits": 100,
       "enabled": true
     }
   }

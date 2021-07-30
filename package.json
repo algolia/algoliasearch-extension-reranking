@@ -1,0 +1,17 @@
+{
+  "name": "reranking-extension",
+  "version": "1.2.0",
+  "private": true,
+  "author": {
+    "name": "Algolia, Inc.",
+    "url": "https://www.algolia.com"
+  },
+  "scripts": {
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/algolia/algoliasearch-extension-reranking.git"
+  },
+  "homepage": "https://github.com/algolia/npm-search"
+}

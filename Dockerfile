@@ -1,5 +1,5 @@
 FROM node:12-alpine
 
-COPY index.js .
+COPY src/index.js .
 
 ENTRYPOINT ["node", "index.js"]

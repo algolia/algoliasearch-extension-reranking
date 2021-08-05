@@ -1,0 +1,88 @@
+HOST=$1
+APP_ID=$2
+API_KEY=$3
+INDEX=$4
+
+usage() {
+  echo "usage: ${0} [-frqd] <host> <app_id> <api_key> <index_name>"
+  echo "options:"
+  echo "-f\tcomma separated fields to fetch\n\tdefault: 'objectID'\n"
+  echo "-r\tif reranking is enabled (true|false)\n\tdefault: 'false'\n"
+  echo "-q\tsearch query\n\tdefault: ''\n"
+  echo "-d\tfields delimiter\n\tdefault: ' | '"
+  exit 1
+}
+
+if [ -z "${HOST}" ]; then
+  echo "Missing host" 
+  usage
+fi
+
+if [ -z "${APP_ID}" ]; then
+  echo "Missing application ID" 
+  usage
+fi
+
+if [ -z "${API_KEY}" ]; then
+  echo "Missing API key" 
+  usage
+fi
+
+if [ -z "${INDEX}" ]; then
+  echo "Missing index name" 
+  usage
+fi
+
+shift 4
+
+while getopts "f:r:q:d:" arg; do
+  case $arg in
+    f )
+      FIELDS=${OPTARG} 
+      ;;
+    r )
+      RERANKING_ENABLED=${OPTARG}
+      ;;
+    q )
+      QUERY="${OPTARG}"
+      ;;
+    d )
+      DELIMITER=${OPTARG}
+      ;;
+    ? )
+      usage
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ -z "${FIELDS}" ]; then
+  FIELDS="objectID"
+fi
+
+if [ -z "${RERANKING_ENABLED}" ]; then
+  RERANKING_ENABLED="false"
+fi
+
+if [ -z "${QUERY}" ]; then
+  QUERY=""
+fi
+
+if [ -z "${DELIMITER}" ]; then
+  DELIMITER=" | "
+fi
+
+FIELDS_ARRAY=(${FIELDS//,/ })
+FORMAT=""
+for i in "${!FIELDS_ARRAY[@]}"; do
+  FORMAT+="\(.${FIELDS_ARRAY[$i]})"
+  if [ $i -ne  `expr ${#FIELDS_ARRAY[@]} - 1` ]; then
+    FORMAT+=$DELIMITER
+  fi
+done
+
+curl -sX POST -H "X-Algolia-Application-Id: ${APP_ID}"\
+              -H "X-Algolia-API-Key: ${API_KEY}"\
+              --data-binary "{ \"params\": \"query='${QUERY}'&attributesToRetrieve=${FIELDS}&extensions=%7B%0A%20%20%20%20%20%20%20%20%22reranking%22%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22enabled%22%3A%20${RERANKING_ENABLED}%0A%20%20%20%20%20%20%20%20%7D%0A%7D\" }"\
+              "https://${HOST}/1/indexes/${INDEX}/query"\
+| jq -r ".hits[] | \"${FORMAT}\""

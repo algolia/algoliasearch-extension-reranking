@@ -50,6 +50,7 @@ Each hit should only include the `objectID`.
 ```
 
 For performance and cost reasons, your web services should be hosted as close as possible to your Algolia application.
+If you are not sure about your application location, please [contact us](mailto:support@algolia.com)
 
 We provide an example of the reranking extension service within a Docker container which is available on the [Docker Hub](https://hub.docker.com/r/algolia/test-reranking).
 

@@ -174,26 +174,17 @@ curl -X PUT -H 'X-Algolia-Application-Id: %YOUR_METIS_APPLICATION_ID' -H 'X-Algo
 
 ### 3. Test your extension
 
-Test if your extension works as expected. The extension is enabled by default, so the search operation will directly return the reranked list of hits:
+Test if your extension works as expected.
+You can use the [search](/search) script that you can find in this repository to test your extension.
+It takes your Metis app credentials, host and index name as arguments and prints the search results list. 
+By default the output consists of the `objectID` value but you can add additional fields of your records using the `-f` flag. 
 
-```ts
-index.search('').then(({ hits }) => {
-  console.log(hits);
-});
-```
-
-Compare the returned result with a default result returned with deactivated extension:
-
-```ts
-index.search('', {
-  extensions: {
-    reranking: {
-      enabled: false,
-    }
-  }
-}).then(({ hits }) => {
-  console.log(hits);
-});
+Launch the script with disabled an enabled reranking and compare the outputs:
+```sh
+echo "Hits with disabled reranking"
+./search <application host> <appplication ID> <API key> <index name>  -r false -f objectID,title,price
+echo "Hits with enabled reranking"
+./search <application host> <appplication ID> <API key> <index name>  -r true -f objectID,title,price
 ```
 
 ## Getting started reranking extension with Azure

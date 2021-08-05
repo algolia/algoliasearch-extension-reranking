@@ -54,7 +54,7 @@ For performance and cost reasons, your web services should be hosted as close as
 We provide an example of the reranking extension service within a Docker container which is available on the [Docker Hub](https://hub.docker.com/r/algolia/test-reranking).
 
 It is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it according with the reranking logic.
-The source code of this application can be found in the [index.js](/Docker/index.js) file.
+The source code of this application can be found in the [index.js](/src/index.js) file.
 The essential part of this application is the `rerank` function which takes the list of hits as a parameter and returns the reordered list of hits as a result.
 In our example it splits the hits into two buckets: cheaper and costlier than $30. The first bucket is sorted by sales rank and the second one is sorted by price. This kind of ranking cannot be achieved through the index settings, so the only way to add such a ranking is to create an extension.
 
@@ -98,7 +98,19 @@ function rerank(hits) {
 }
 ```
 
-You can replace this function with a one that matches your use case.
+Start with cloning this repository. 
+Replace the `rerank` function with a one that matches your use case.
+Upload the refined extension to your DockerHub repository.
+
+Build your image
+```sh
+docker build -t reranking-extension .
+```
+
+Push it to your Dockerhub account
+```sh
+docker push <hub-user>/<repo-name>:<tag>
+```
 
 ### 2. Set the reranking endpoint in the settings
 

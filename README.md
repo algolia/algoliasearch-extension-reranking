@@ -1,16 +1,16 @@
-> :warning: Please note that the reranking extension feature is in closed beta phase, in the process of being tested before its official release.
+> :warning: Please note that the reranking extension feature is in closed beta phase.
 
 # Reranking extensibility
 
 ## What is the reranking extension?
 
-The reranking extension provides the possibility to rerank items based on more than just custom ranking. You can rerank items on a specific logic, for example:
+The reranking extension provides the possibility to rerank your search results based on your specific logic, for example reranking using:
 
-- Custom merchandising (e.g. based on number of impressions)
-- Custom personalization strategies
-- Custom machine learning models
+- A custom diversification and merchandising strategy (e.g. based on number of impressions)
+- A custom personalization strategy (e.g using a query time computed user score)
+- A custom machine learning models (e.g using a semantic reranker)
 
-The reranking extension is a post-processing step for a search request that gives you full control of the final search results ranking.
+The reranking extension is a post-processing step for a search request that gives you more control on the final search results ranking.
 
 ## How does it work?
 
@@ -19,9 +19,9 @@ The sequence diagram below shows how the reranking extensions works.
 ![Diagram](docs/seqdiag.png)
 
 - A user triggers a new search
-- The engine performs a search and dispatches a specified chunk of results to the reranking extension endpoint
-- The reranking service performs reranking and returns the reordered result to the engine
-- The engine returns the reordered results to the user
+- The engine performs a search and sends a specified chunk of results to the reranking extension endpoint
+- The reranking service performs the reranking and returns the reordered result list to the engine
+- The engine performs the highlighting and pagination before returning the reordered results to the user
 
 The reranking extension joins the existing ranking pipeline as the last step of the tie-breaking algorithm.
 

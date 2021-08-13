@@ -8,7 +8,7 @@ The reranking extension provides the possibility to rerank your search results b
 
 - A custom diversification and merchandising strategy (e.g. based on number of impressions)
 - A custom personalization strategy (e.g using a query time computed user score)
-- A custom machine learning models (e.g using a semantic reranker)
+- A custom machine learning model (e.g using a semantic reranker)
 
 The reranking extension is a post-processing step for a search request that gives you more control on the final search results ranking.
 

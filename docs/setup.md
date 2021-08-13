@@ -4,7 +4,7 @@ The setup of the reranking extension consists of two steps:
 
 ### 1. Create a reranking web service
 
-The reranking is performed by a web-service that should be able to respond to requests on a specific endpoint.
+The reranking is performed by a web service that should be able to respond to requests on a specific endpoint.
 Those requests include minimal information about the records and their ranking criteria.
 
 **Request body example:**
@@ -50,14 +50,14 @@ Each hit should only include the `objectID`.
 ```
 
 For performance and cost reasons, your web services should be hosted as close as possible to your Algolia application.
-If you are not sure about your application location, please [contact us](mailto:support@algolia.com).
+If you are not sure about your application location, please [contact support](https://www.algolia.com/support/).
 
 We provide an example of the reranking extension service within a Docker container which is available on the [Docker Hub](https://hub.docker.com/r/algolia/test-reranking).
 
-It is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it according with the reranking logic.
-The source code of this application can be found in the [index.js](/src/index.js) file.
-The essential part of this application is the `rerank` function which takes the list of hits as a parameter and returns the reordered list of hits as a result.
-In our example it splits the hits into two buckets: cheaper and costlier than $30. The first bucket is sorted by sales rank and the second one is sorted by price. This kind of ranking cannot be achieved through the index settings, so the only way to add such a ranking is to create an extension.
+This is a Node.js application that listens to HTTP requests, extracts the `hits` list and reorders it using the reranking logic.
+The source code of this application can be found in the [`index.js`](/src/index.js) file.
+The essential part of this application is the `rerank` function, which takes the list of hits as a parameter and returns the reordered list of hits as a result.
+In our example it splits the hits into two buckets: those with a price lower or higher than $30. The first bucket is sorted by sales rank and the second one is sorted by price. This kind of ranking cannot be achieved through the index settings, so the only way to add such a ranking is to create an extension.
 
 ```ts
 function rerank(hits) {
@@ -99,23 +99,22 @@ function rerank(hits) {
 }
 ```
 
-Start with cloning this repository. 
-Replace the `rerank` function with a one that matches your use case.
-Upload the refined extension to your DockerHub repository.
+To build your custom reranking extensions, start with cloning this repository. 
+Replace the `rerank` function with a one that matches your use case, and upload the refined extension to your DockerHub repository.
 
-Build your image
+Build your image:
 ```sh
 docker build -t reranking-extension .
 ```
 
-Push it to your Dockerhub account
+Push it to your Dockerhub account:
 ```sh
 docker push <hub-user>/<repo-name>:<tag>
 ```
 
 ### 2. Set the reranking endpoint in the settings
 
-Set `extensions.reranking` setting in your index:
+Set `extensions.reranking` setting in your index to point to your endpoint:
 
 ```ts
 {
@@ -129,8 +128,8 @@ Set `extensions.reranking` setting in your index:
 }
 ```
 
-You can access the Metis application using one of the [API clients](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/go/?client=go) we provide.
-You have to initialize the search client using the custom configuration in which you should provide the URL of your Metis application as a host.
+You can access the Metis application using one of Aloglia's [API clients](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/js/?client=go).
+You have to initialize the search client using a custom configuration, in which you should provide the URL of your Metis application as a host.
 
 The example of creation of the search client with a custom configuration using the JS client:
 

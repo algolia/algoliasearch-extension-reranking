@@ -128,7 +128,7 @@ Set `extensions.reranking` setting in your index to point to your endpoint:
 }
 ```
 
-You can access the Metis application using one of Aloglia's [API clients](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/js/?client=go).
+You can access the Metis application using one of Algolia's [API clients](https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/js/?client=go).
 You have to initialize the search client using a custom configuration, in which you should provide the URL of your Metis application as a host.
 
 The example of creation of the search client with a custom configuration using the JS client:

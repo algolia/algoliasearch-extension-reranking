@@ -9,6 +9,8 @@ Those requests include minimal information about the records and their ranking c
 
 **Request body example:**
 
+The request is a `POST` request with a body with this format:
+
 ```ts
 {
   "hits": [
